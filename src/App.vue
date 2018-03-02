@@ -3,7 +3,7 @@
     <header>
       <h1>Kotibudjetti</h1>
       <h2>Yksinkertaista kulujen seurantaa laiskalle</h2>
-      <span @click="logout">Log out</span>
+      <button class="link" @click="logout">Kirjaudu ulos</button>
       <hr class="divider">
     </header>
     <router-view/>
@@ -15,6 +15,7 @@ import firebase from 'firebase'
 
 export default {
   name: 'App',
+
   methods: {
     logout () {
       firebase.auth().signOut().then(() => {
