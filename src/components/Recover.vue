@@ -23,6 +23,7 @@ export default {
       }
       firebase.auth().sendPasswordResetEmail(this.email).then((res) => {
         this.resetMsg = 'Salasanan palautus onnistui. Tarkista sähköpostisi!'
+        this.email = ''
       })
     }
   }
