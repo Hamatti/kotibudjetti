@@ -1,12 +1,14 @@
 <template lang="html">
   <div>
     <receipt-form @addReceipt="addReceipt"></receipt-form>
-  </div>
+    </div>
 
 </template>
 
 <script>
 import ReceiptForm from '@/components/ReceiptForm'
+import firebase from 'firebase'
+import db from '@/firebase.js'
 
 export default {
   name: 'index',
@@ -14,8 +16,10 @@ export default {
     'receipt-form': ReceiptForm
   },
   methods: {
-    addReceipt () {
-
+    addReceipt (receipt) {
+      let currentUser = firebase.auth().currentUser
+      let ref = db.ref(`${currentUser.uid}/receipts`).push()
+      ref.set(receipt)
     }
   }
 }
