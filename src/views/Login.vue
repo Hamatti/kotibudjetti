@@ -6,8 +6,9 @@
         <li class="tab" :class="{ active: isActive('Register') }" @click="activeTab = 'Register'">Rekisteröityminen</li>
       </ul>
       <div class="tab-content">
-        <app-login v-if="isActive('Login')"></app-login>
+        <app-login v-if="isActive('Login')" @forgotPassword="activeTab = 'ForgotPassword'"></app-login>
         <app-register v-if="isActive('Register')"></app-register>
+        <app-recover v-if="isActive('ForgotPassword')"></app-recover>
       </div>
     </div>
   </div>
@@ -16,12 +17,14 @@
 <script>
 import LoginForm from '@/components/Login'
 import RegisterForm from '@/components/Register'
+import RecoverForm from '@/components/Recover'
 
 export default {
   name: 'login',
   components: {
     'app-login': LoginForm,
-    'app-register': RegisterForm
+    'app-register': RegisterForm,
+    'app-recover': RecoverForm
   },
   data () {
     return {

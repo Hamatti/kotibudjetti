@@ -3,7 +3,7 @@
     <input type="text" name="email" placeholder="Sähköposti" v-model="login.email" >
     <input type="password" name="password" placeholder="Salasana" v-model="login.password">
     <button class="button button-block" @click="log_in">Kirjaudu sisään</button>
-    <button type="button" class="link" name="button">Unohtuiko salasana?</button>
+    <button type="button" class="link" name="button" @click="$emit('forgotPassword')">Unohtuiko salasana?</button>
   </div>
 </template>
 
