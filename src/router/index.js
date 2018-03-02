@@ -7,13 +7,16 @@ import Login from '../views/Login'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
       name: 'index',
-      component: Index
+      component: Index,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
@@ -22,3 +25,18 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let currentUser = false
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  if (requiresAuth && !currentUser) {
+    next('login')
+  } else if (to.name === 'login' && currentUser) {
+    next('')
+  } else {
+    next()
+  }
+})
+
+export default router
