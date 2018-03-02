@@ -1,7 +1,6 @@
 <template>
   <div>
     <header>
-      <span class="edit" @click="edit" v-if="editable">[edit]</span>
       <span class="store">{{ receipt.meta.store }}</span><br>
       <span class="date"> {{ receipt.meta.date }} </span>
     </header>
@@ -30,16 +29,12 @@ export default {
     }
   },
   methods: {
-    edit () {
-      console.log('NOT IMPLEMENTED YET')
-      this.$emit('editReceipt', this.receipt)
-    },
     deleteItem (item) {
       let idx = this.receipt.items.indexOf(item)
       this.receipt.items.splice(idx, 1)
     }
   },
-  props: ['receipt', 'editable']
+  props: ['receipt']
 }
 </script>
 
@@ -68,13 +63,6 @@ export default {
   header .date {
     font-style: italic;
     font-size: 0.8em;
-  }
-
-  header .edit {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    cursor: pointer;
   }
 
   table {
