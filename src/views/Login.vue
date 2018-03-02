@@ -97,4 +97,11 @@ export default {
 ul.tab-group:last-child {
   margin-bottom: 0;
 }
+
+.tab-content /deep/ .success {
+  background-color: $white;
+  color: $main-dark;
+  margin-top: 10px;
+  padding: 10px 0;
+}
 </style>

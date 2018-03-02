@@ -38,10 +38,4 @@ export default {
   margin-top: 30px;
 }
 
-.success {
-  background-color: $white;
-  color: $main-dark;
-  margin-top: 10px;
-
-}
 </style>
