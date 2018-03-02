@@ -17,9 +17,9 @@ export default {
   name: 'App',
   methods: {
     logout () {
-        firebase.auth().signOut().then(() => {
-          this.$router.replace('login')
-        })
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
     }
   }
 }
@@ -104,4 +104,5 @@ button.link {
   margin-top: 10px;
   text-decoration: underline;
 }
+
 </style>
