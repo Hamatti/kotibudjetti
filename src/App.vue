@@ -3,7 +3,10 @@
     <header>
       <h1>Kotibudjetti</h1>
       <h2>Yksinkertaista kulujen seurantaa laiskalle</h2>
-      <button class="link" @click="logout">Kirjaudu ulos</button>
+      <p v-if="isLoggedIn()">
+        Hei {{ currentUser.email }} |
+        <button class="link" @click="logout">Kirjaudu ulos</button>
+      </p>
       <hr class="divider">
     </header>
     <router-view/>
@@ -15,13 +18,25 @@ import firebase from 'firebase'
 
 export default {
   name: 'App',
-
+  data () {
+    return {
+      currentUser: { }
+    }
+  },
   methods: {
     logout () {
       firebase.auth().signOut().then(() => {
         this.$router.replace('login')
       })
+    },
+    isLoggedIn () {
+      return this.currentUser && this.currentUser.hasOwnProperty('email') && !!(this.currentUser.email)
     }
+  },
+  mounted () {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.currentUser = user
+    })
   }
 }
 </script>
