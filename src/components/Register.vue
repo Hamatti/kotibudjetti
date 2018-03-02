@@ -32,6 +32,7 @@ export default {
       let ref = db.ref(`/subscribed`).push()
       ref.set(this.email).then(() => {
         this.msg = 'Sähköpostisi on lisätty listalle! Mukavaa päivänjatkoa'
+        this.email = ''
       })
     }
   }
