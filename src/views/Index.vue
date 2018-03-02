@@ -1,13 +1,23 @@
 <template lang="html">
   <div>
-    <h1>App#Index</h1>
+    <receipt-form @addReceipt="addReceipt"></receipt-form>
   </div>
 
 </template>
 
 <script>
+import ReceiptForm from '@/components/ReceiptForm'
+
 export default {
-  name: 'index'
+  name: 'index',
+  components: {
+    'receipt-form': ReceiptForm
+  },
+  methods: {
+    addReceipt () {
+
+    }
+  }
 }
 </script>
 
