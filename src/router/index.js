@@ -6,6 +6,7 @@ import db from '@/firebase.js'
 // Components for routes
 import Index from '@/views/Index'
 import Login from '@/views/Login'
+import Dashboard from '@/views/Dashboard'
 
 Vue.use(Router)
 console.log(db)
@@ -25,6 +26,14 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
