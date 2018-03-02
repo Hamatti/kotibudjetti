@@ -88,6 +88,7 @@ button.link {
   border: none;
   box-shadow: none;
   color: $white;
+  cursor: pointer;
   font-size: 0.8em;
   font-weight: 400;
   margin-top: 10px;
