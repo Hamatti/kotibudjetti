@@ -38,6 +38,7 @@
 
     <hr class="divider">
       <button class="button" @click="addReceipt" :disabled="!(canAddReceipt)">Tallenna kuitti</button>
+      <info-box :message="config.confirm.msg" level="success"></info-box>
   </div>
   <div class="receipt">
     <receipt :receipt="receipt" :editable="false"></receipt>
@@ -46,7 +47,8 @@
 </template>
 
 <script>
-import receipt from './Receipt.vue'
+import receipt from '@/components/Receipt.vue'
+import InfoBox from '@/components/InfoBox'
 
 // Helper function to get today's date in Y-m-d format for date picker default value
 const toDateInputValue = (date) => {
@@ -58,7 +60,8 @@ const toDateInputValue = (date) => {
 export default {
   name: 'receipt-form',
   components: {
-    receipt
+    receipt,
+    'info-box': InfoBox
   },
   computed: {
     canAddReceipt () {
@@ -72,7 +75,9 @@ export default {
       config: {
         activeTab: 'Meta',
         inputMode: 'SINGLE',
-        confirm: {}
+        confirm: {
+          msg: ''
+        }
       },
       formData: {
         singleProduct: {
@@ -109,9 +114,7 @@ export default {
         return
       }
       this.receipt.meta = this.formData.metadata
-      // TODO: Refactor into a method and component
       this.config.confirm = {
-        status: 0,
         msg: 'Kuitti tallennettu onnistuneesti!'
       }
       this.$emit('addReceipt', this.receipt)
@@ -162,7 +165,9 @@ export default {
       this.config = {
         activeTab: 'Meta',
         inputMode: 'SINGLE',
-        confirm: {}
+        confirm: {
+          msg: this.config.confirm.msg
+        }
       }
       this.formData = {
         singleProduct: {
@@ -185,6 +190,10 @@ export default {
         items: [],
         origin: -1
       }
+
+      setTimeout(() => {
+        this.config.confirm.msg = ''
+      }, 2000)
     }
   }
 }

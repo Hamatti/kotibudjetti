@@ -11,16 +11,20 @@
     <div class="loginform">
       <input type="text" name="email" placeholder="Sähköposti" v-model="email" >
       <button class="button button-block" @click="subscribe">Lisää listalle</button>
-      <div class="success" v-if="msg"> {{ msg }} </div>
+      <info-box :message="msg" level="success"></info-box>
     </div>
   </div>
 </template>
 
 <script>
 import db from '@/firebase.js'
+import InfoBox from '@/components/InfoBox'
 
 export default {
   name: 'register',
+  components: {
+    'info-box': InfoBox
+  },
   data () {
     return {
       email: '',

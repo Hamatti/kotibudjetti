@@ -2,14 +2,19 @@
   <div class="loginform">
     <input type="text" name="email" placeholder="Sähköposti" v-model="email" >
     <button class="button button-block" @click="recoverPassword">Palauta salasana</button>
-    <div class="success" v-if="resetMsg"> {{ resetMsg }} </div>
+    <info-box :message="resetMsg" level="success"></info-box>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase'
+import InfoBox from '@/components/InfoBox'
+
 export default {
   name: 'login',
+  components: {
+    'info-box': InfoBox
+  },
   data () {
     return {
       email: '',
